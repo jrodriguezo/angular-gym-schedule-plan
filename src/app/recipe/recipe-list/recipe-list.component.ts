@@ -18,20 +18,25 @@ export class RecipeListComponent implements OnInit {
   onNewRecipe(){
     this.newRecipe(this.id,this.rName,"Delicious pizza with cheese",40,67,32,"https://cdn.pixabay.com/photo/2015/02/13/11/04/pizza-634967_960_720.jpg");
     this.newRecipe(this.id,this.rName,"Pasta",40,78,32,"");
-    for(var i = 0; this.recipes.length; i++){
-      this.sumPros += this.recipes[i].proteins;
-      this.sumCarbs += this.recipes[i].carbohydrates;
-      this.sumFats += this.recipes[i].fats;
+    this.totalRecipes(this.recipes);
+  }
+
+  totalRecipes(recipes: Recipe[]){
+    this.sumPros = 0;
+    this.sumCarbs = 0;
+    this.sumFats = 0;
+    for(var i = 0; recipes.length; i++){
+      this.sumPros += recipes[i].proteins;
+      this.sumCarbs += recipes[i].carbohydrates;
+      this.sumFats += recipes[i].fats;
     }
-
-    
-
   }
 
   onDeleteRecipe(key: number){
         this.recipes.forEach((value,index)=>{
         if(value.id==key) this.recipes.splice(index,1);
-    });  
+    });
+    this.totalRecipes(this.recipes);  
   }
 
   newRecipe(id: number, name: string, description: string, proteins: number, carbohydrates: number, fats: number, imagePath: string){
