@@ -1,4 +1,12 @@
-# AngularGymSchedulePlan
+# AngularGymSchedulePlan - Foods4Bulking
+
+Project in progress...
+
+- Make your daily routine -> Make a plan.
+
+![image](https://user-images.githubusercontent.com/36509669/137401931-8555032a-6711-4be5-8952-4ff5f55e9cd1.png)
+
+# About the project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
