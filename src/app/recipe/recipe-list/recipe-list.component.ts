@@ -8,7 +8,10 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent implements OnInit {
   id = 0;
-  rName = '';
+  recipeName = '';
+  recipePros = 0;
+  recipeCarbs = 0;
+  recipeFats = 0;
   sumPros = 0;
   sumCarbs = 0;
   sumFats = 0;
@@ -16,8 +19,7 @@ export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
 
   onNewRecipe(){
-    this.newRecipe(this.id,this.rName,"Delicious pizza with cheese",40,67,32,"https://cdn.pixabay.com/photo/2015/02/13/11/04/pizza-634967_960_720.jpg");
-    this.newRecipe(this.id,this.rName,"Pasta",40,78,32,"");
+    this.newRecipe(this.id,this.recipeName,this.recipePros,this.recipeCarbs,this.recipeFats);
     this.totalRecipes(this.recipes);
   }
 
@@ -33,17 +35,20 @@ export class RecipeListComponent implements OnInit {
   }
 
   onDeleteRecipe(key: number){
-        this.recipes.forEach((value,index)=>{
+    this.recipes.forEach((value,index)=>{
         if(value.id==key) this.recipes.splice(index,1);
     });
-    this.totalRecipes(this.recipes);  
+    this.totalRecipes(this.recipes);
   }
 
-  newRecipe(id: number, name: string, description: string, proteins: number, carbohydrates: number, fats: number, imagePath: string){
-    name = "food#"+id;
-    this.recipes.push(new Recipe(id,name,description,proteins,carbohydrates,fats,imagePath));
+  newRecipe(id: number, name: string, proteins: number, carbohydrates: number, fats: number){
+    let fullFoodName = id + ' - ' + name;
+    this.recipes.push(new Recipe(id,fullFoodName,proteins,carbohydrates,fats));
     this.id++;
-    this.rName = '';
+    this.recipeName = '';
+    this.recipePros = 0;
+    this.recipeCarbs = 0;
+    this.recipeFats = 0;
   }
 
   constructor() { }

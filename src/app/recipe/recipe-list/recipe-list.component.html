@@ -1,42 +1,118 @@
-<div class="row">
-    <div class="col-md-12 pt-2 pb-2">
-        <div class="input-group">
-            <!--input type="text" class="form-control" [(ngModel)]="rName" placeholder="Food name"-->
-            <button class="btn btn-success" (click)="onNewRecipe()" [disabled]="recipes.length > 0">New Recipe</button>
-          </div>
+<div class="col-md-12 pt-2 pb-2">
+            <div class="row">
+              <div class="col">
+                <mat-card class="example-card">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Favorite food</mat-label>
+                      <input matInput type="text" [(ngModel)]="recipeName" (keyup.enter)="onNewRecipe()">
+                    </mat-form-field>
+                  <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Proteins</mat-label>
+                    <input matInput type="number" [(ngModel)]="recipePros" (keyup.enter)="onNewRecipe()">
+                  </mat-form-field>
+                  <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Carbohydrates</mat-label>
+                    <input matInput type="number" [(ngModel)]="recipeCarbs" (keyup.enter)="onNewRecipe()">
+                  </mat-form-field>
+                  <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Fats</mat-label>
+                    <input matInput type="number" [(ngModel)]="recipeFats" (keyup.enter)="onNewRecipe()">
+                  </mat-form-field>
+                  <div class="d-flex justify-content-center">
+                  <button mat-stroked-button color="accent">Add</button>
+                </div>
+                </mat-card>
+
+                    <!--form>
+                    <div class="row">
+                    <label for="foodName" class="col-sm-2 col-form-label">Food name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="recipeName" placeholder="Food name" (keyup.enter)="onNewRecipe()">
+                    </div>
+                    </div>
+
+                    <div class="row">
+                    <label for="inputProteins" class="col col-form-label">Proteins</label>
+                    <div class="col">
+                        <input type="number" class="form-control" [(ngModel)]="recipePros" placeholder="Pro number" (keyup.enter)="onNewRecipe()">
+                    </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputCarbohydrates" class="col col-form-label">Carbohydrates</label>
+                        <div class="col">
+                            <input type="number" class="form-control" [(ngModel)]="recipeCarbs" placeholder="Carb number" (keyup.enter)="onNewRecipe()">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputFats" class="col col-form-label">Fats</label>
+                        <div class="col">
+                            <input type="number" class="form-control" [(ngModel)]="recipeFats" placeholder="Fat number" (keyup.enter)="onNewRecipe()">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <button class="btn btn-success float-end" (click)="onNewRecipe()" [disabled]="!recipeName">New Recipe</button>
+                    </div>
+                </form-->
+                </div>
+
+
+
+                <div class="col">
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Food#</th>
+                        <th scope="col">Proteins</th>
+                        <th scope="col">Carbohydrates</th>
+                        <th scope="col">Fats</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+
+                            <!--h4 class="list-group-item-heading">{{ recipe.name }}</h4-->
+                            <!--p class="list-group-item-text text-center">{{ recipe.description }}</p-->
+                              <tbody>
+                                <tr *ngFor="let recipe of recipes">
+                                  <td>{{ recipe.name }}</td>
+                                  <td>{{ recipe.proteins }}</td>
+                                  <td>{{ recipe.carbohydrates }}</td>
+                                  <td>{{ recipe.fats }}</td>
+                                  <td>
+                                    <button mat-icon-button color="warn" (click)="onDeleteRecipe(recipe.id)">
+                                      <mat-icon>close</mat-icon>
+                                    </button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td><strong>Total</strong></td>
+                                  <td><strong>{{ sumPros }}</strong></td>
+                                  <td><strong>{{ sumCarbs }}</strong></td>
+                                  <td><strong>{{ sumFats }}</strong></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        <!--span class="pull-right">
+                            <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;">
+                        </span-->
+                        <!--button class="btn btn-danger" style="float: right;" (click)="onDeleteRecipe(recipe.id)">Delete</button-->
+
+                    <!--div class="results mt-5" *ngIf="recipes.length > 0; else elseBlock">
+                        <h1 class="text-center">Results</h1>
+                        <hr>
+                        <p class="text-start">Total</p>
+                        <div class="input-group">
+                            <span class="input-group-text">Proteins</span>
+                            <input input type="text" class="form-control" [(ngModel)]="sumPros" disabled>
+                            <span class="input-group-text">Carbohydrates</span>
+                            <input input type="text" class="form-control" [(ngModel)]="sumCarbs" disabled>
+                            <span class="input-group-text">Fats</span>
+                            <input input type="text" class="form-control" [(ngModel)]="sumFats" disabled>
+                        </div>
+                    </div>
+                    <ng-template #elseBlock>Add foods to calculate your macros.</ng-template-->
+                </div>
+            </div>
     </div>
 
-  
-    <div class="col-md-12">
-        <a
-        href="#" 
-        class="list-group-item clearfix" 
-        *ngFor="let recipe of recipes">
-            <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-                <p class="list-group-item-text text-center">{{ recipe.description }}</p>
-                <small>Pros: {{ recipe.proteins }}</small>
-                <hr>
-                <small>Carbs: {{ recipe.carbohydrates }}</small>
-                <hr>
-                <small>Fats: {{ recipe.fats }}</small>
-            </div>
-            <span class="pull-right">
-                <!--img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive" style="max-height: 50px;"-->
-            </span>
-            <button class="btn btn-danger" style="float: right;" (click)="onDeleteRecipe(recipe.id)">Delete</button>
-        </a>
-        <hr>
-        <p class="text-start">Total</p>
-        <hr>
-        <div class="input-group">
-            <span class="input-group-text">Proteins</span>
-            <input input type="text" class="form-control" [(ngModel)]="sumPros" disabled>
-            <span class="input-group-text">Carbohydrates</span>
-            <input input type="text" class="form-control" [(ngModel)]="sumCarbs" disabled>
-            <span class="input-group-text">Fats</span>
-            <input input type="text" class="form-control" [(ngModel)]="sumFats" disabled>
-        </div>
-        <app-recipe-item></app-recipe-item>
-    </div>
-</div>
+
