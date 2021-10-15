@@ -22,7 +22,6 @@ export class FoodFormComponent implements OnInit {
 
   onNewRecipe(){
     this.newRecipe(this.id,this.recipeName,this.recipePros,this.recipeCarbs,this.recipeFats);
-    this.totalRecipes(this.recipes);
   }
 
   totalRecipes(recipes: Recipe[]){
@@ -54,6 +53,7 @@ export class FoodFormComponent implements OnInit {
       }else{
         this.recipes.push(new Recipe(id,fullFoodName,proteins,carbohydrates,fats));
       }
+      this.totalRecipes(this.recipes);
     });
     this.id++;
     this.recipeName = '';
