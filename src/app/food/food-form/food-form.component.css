@@ -1,7 +1,7 @@
 /* https://colorswall.com/palette/52989/ */
 
 .example-form-field {
-  width: 100/3%;
+  width: 100%;
 }
 
 .example-full-width {
@@ -12,19 +12,36 @@
   background-color: #007bff;
 }
 
-Here is some most common properties of angular material v7
+.food-form {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+tr.bg-col th {
+  background-color: #007bff;
+  color: white;
+}
+
+tr.bg-total td {
+  background-color: #007bff;
+  color: white;
+}
+
+table {
+  width: 100%;
+}
 
 /* input color class */
 ::ng-deep input.mat-input-element {
-  color: #00f7ff;
+  color: white;
 }
 
 /* Change label color on focused */
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #00f7ff !important;
+  color: white !important;
 }
 
 /* underline border color on focused */
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
-  background-color: #00f7ff !important;
+  background-color: white !important;
 }

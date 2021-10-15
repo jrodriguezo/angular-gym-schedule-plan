@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-food-form',
@@ -61,6 +62,9 @@ export class FoodFormComponent implements OnInit {
     this.recipeCarbs = 0;
     this.recipeFats = 0;
   }
+
+  //displayedColumns = ['name','proteins','carbohydrates','fats'];
+
   constructor(public calorieNinjaService: CalorieNinjaService) { }
 
 

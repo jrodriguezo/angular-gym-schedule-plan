@@ -1,38 +1,47 @@
 <div class="col-md-12 pt-2 pb-2">
-  <div class="row">
+  <div class="food-form row">
     <div class="col">
       <mat-card class="example-card">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Favorite food</mat-label>
           <input matInput type="text" [(ngModel)]="recipeName" (keyup.enter)="onNewRecipe()">
         </mat-form-field>
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Proteins</mat-label>
-          <input matInput type="number" [(ngModel)]="recipePros" (keyup.enter)="onNewRecipe()">
-        </mat-form-field>
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Carbohydrates</mat-label>
-          <input matInput type="number" [(ngModel)]="recipeCarbs" (keyup.enter)="onNewRecipe()">
-        </mat-form-field>
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Fats</mat-label>
-          <input matInput type="number" [(ngModel)]="recipeFats" (keyup.enter)="onNewRecipe()">
-        </mat-form-field>
+        <div class="row">
+          <div class="col-4">
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Proteins</mat-label>
+            <input matInput type="number" [(ngModel)]="recipePros" (keyup.enter)="onNewRecipe()">
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Carbohydrates</mat-label>
+            <input matInput type="number" [(ngModel)]="recipeCarbs" (keyup.enter)="onNewRecipe()">
+          </mat-form-field>
+          </div>
+          <div class="col-4">
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Fats</mat-label>
+            <input matInput type="number" [(ngModel)]="recipeFats" (keyup.enter)="onNewRecipe()">
+          </mat-form-field>
+          </div>
+      </div>
         <div class="d-flex justify-content-center">
           <button mat-stroked-button color="accent">Add</button>
         </div>
       </mat-card>
     </div>
+  </div>
 
-
-    <div class="col">
-      <table class="table">
+  <div class="food-form row">
+    <div class="col pt-2 pb-2">
+      <table class="food-table table table-hover align-content-sm-center border-2">
         <thead>
-          <tr>
-            <th scope="col">Food#</th>
-            <th scope="col">Proteins</th>
-            <th scope="col">Carbohydrates</th>
-            <th scope="col">Fats</th>
+          <tr class="bg-col">
+            <th scope="col"># - Food (100g)</th>
+            <th scope="col">Proteins (g)</th>
+            <th scope="col">Carbohydrates (g)</th>
+            <th scope="col">Fats (g)</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -48,14 +57,39 @@
               </button>
             </td>
           </tr>
-          <tr>
-            <td><strong>Total</strong></td>
+          <tr class="bg-total">
+            <td><strong>TOTAL</strong></td>
             <td><strong>{{ sumPros }}</strong></td>
             <td><strong>{{ sumCarbs }}</strong></td>
             <td><strong>{{ sumFats }}</strong></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
+  </div>
+
+
+  <!--table mat-table [dataSource]="recipes"  class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let recipe"> {{ recipe.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="proteins">
+      <th mat-header-cell *matHeaderCellDef>Proteins</th>
+      <td mat-cell *matCellDef="let recipe"> {{ recipe.proteins }} </td>
+    </ng-container>
+    <ng-container matColumnDef="carbohydrates">
+      <th mat-header-cell *matHeaderCellDef>Carbohydrates</th>
+      <td mat-cell *matCellDef="let recipe"> {{ recipe.carbohydrates }} </td>
+    </ng-container>
+    <ng-container matColumnDef="fats">
+      <th mat-header-cell *matHeaderCellDef>Fats</th>
+      <td mat-cell *matCellDef="let recipe"> {{ recipe.fats }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table-->
