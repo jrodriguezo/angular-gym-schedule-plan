@@ -2,25 +2,29 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalorieNinjaService } from './food/calorie-ninja/calorie-ninja.service'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
+import { FoodComponent } from './food/food.component';
+import { FoodFormComponent } from './food/food-form/food-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from "@angular/common/http";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipeComponent,
-    RecipeListComponent
+    FoodComponent,
+    FoodFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +35,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CalorieNinjaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

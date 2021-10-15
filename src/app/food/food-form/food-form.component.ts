@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
 
 @Component({
-  selector: 'app-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  selector: 'app-food-form',
+  templateUrl: './food-form.component.html',
+  styleUrls: ['./food-form.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class FoodFormComponent implements OnInit {
+  foods: any = [];
   id = 0;
   recipeName = '';
   recipePros = 0;
@@ -27,7 +29,7 @@ export class RecipeListComponent implements OnInit {
     this.sumPros = 0;
     this.sumCarbs = 0;
     this.sumFats = 0;
-    for(var i = 0; recipes.length; i++){
+    for(var i = 0; i < recipes.length; i++){
       this.sumPros += recipes[i].proteins;
       this.sumCarbs += recipes[i].carbohydrates;
       this.sumFats += recipes[i].fats;
@@ -43,15 +45,24 @@ export class RecipeListComponent implements OnInit {
 
   newRecipe(id: number, name: string, proteins: number, carbohydrates: number, fats: number){
     let fullFoodName = id + ' - ' + name;
-    this.recipes.push(new Recipe(id,fullFoodName,proteins,carbohydrates,fats));
+    this.calorieNinjaService.getFood(name).subscribe(data =>{
+      let apiResponse = Object.values(data);
+      if(apiResponse[0].length !== 0){
+        let foodMacrosResponse = apiResponse[0][0];
+        this.foods.push(foodMacrosResponse);
+        this.recipes.push(new Recipe(id,fullFoodName,foodMacrosResponse.protein_g,foodMacrosResponse.carbohydrates_total_g,foodMacrosResponse.fat_total_g));
+      }else{
+        this.recipes.push(new Recipe(id,fullFoodName,proteins,carbohydrates,fats));
+      }
+    });
     this.id++;
     this.recipeName = '';
     this.recipePros = 0;
     this.recipeCarbs = 0;
     this.recipeFats = 0;
   }
+  constructor(public calorieNinjaService: CalorieNinjaService) { }
 
-  constructor() { }
 
   ngOnInit(): void {
   }

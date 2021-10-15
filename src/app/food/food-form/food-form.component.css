@@ -1,0 +1,30 @@
+/* https://colorswall.com/palette/52989/ */
+
+.example-form-field {
+  width: 100/3%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-card {
+  background-color: #007bff;
+}
+
+Here is some most common properties of angular material v7
+
+/* input color class */
+::ng-deep input.mat-input-element {
+  color: #00f7ff;
+}
+
+/* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #00f7ff !important;
+}
+
+/* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #00f7ff !important;
+}

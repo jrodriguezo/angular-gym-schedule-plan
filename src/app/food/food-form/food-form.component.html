@@ -1,0 +1,61 @@
+<div class="col-md-12 pt-2 pb-2">
+  <div class="row">
+    <div class="col">
+      <mat-card class="example-card">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Favorite food</mat-label>
+          <input matInput type="text" [(ngModel)]="recipeName" (keyup.enter)="onNewRecipe()">
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Proteins</mat-label>
+          <input matInput type="number" [(ngModel)]="recipePros" (keyup.enter)="onNewRecipe()">
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Carbohydrates</mat-label>
+          <input matInput type="number" [(ngModel)]="recipeCarbs" (keyup.enter)="onNewRecipe()">
+        </mat-form-field>
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>Fats</mat-label>
+          <input matInput type="number" [(ngModel)]="recipeFats" (keyup.enter)="onNewRecipe()">
+        </mat-form-field>
+        <div class="d-flex justify-content-center">
+          <button mat-stroked-button color="accent">Add</button>
+        </div>
+      </mat-card>
+    </div>
+
+
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Food#</th>
+            <th scope="col">Proteins</th>
+            <th scope="col">Carbohydrates</th>
+            <th scope="col">Fats</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let recipe of recipes">
+            <td>{{ recipe.name }}</td>
+            <td>{{ recipe.proteins }}</td>
+            <td>{{ recipe.carbohydrates }}</td>
+            <td>{{ recipe.fats }}</td>
+            <td>
+              <button mat-icon-button color="warn" (click)="onDeleteRecipe(recipe.id)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{{ sumPros }}</strong></td>
+            <td><strong>{{ sumCarbs }}</strong></td>
+            <td><strong>{{ sumFats }}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
