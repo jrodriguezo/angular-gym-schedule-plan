@@ -1,10 +1,19 @@
-# AngularGymSchedulePlan - Foods4Bulking
+# AngularGymSchedulePlan - Foods4Bulking 
 
 Project in progress...
 
-- Make your daily routine -> Make a plan.
+- Make your daily routine; Make a plan.
 
-![image](https://user-images.githubusercontent.com/36509669/137401931-8555032a-6711-4be5-8952-4ff5f55e9cd1.png)
+![image](https://user-images.githubusercontent.com/36509669/137535473-eb446bc4-94b6-4c8b-819a-c6334c3f2bc2.png)
+
+Version 1.0.0 will be achieved when the following milestones are completed:
+
+- [x] API CalorieNinjas implemented
+- [ ] Basic UX/UI
+- [ ] Schedule
+- [ ] Index (Cover Page)
+- [ ] Navigation
+- [ ] MongoDB
 
 # About the project
 
@@ -33,3 +42,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Author 
+
+[@jrodriguezo](https://github.com/jrodriguezo)
