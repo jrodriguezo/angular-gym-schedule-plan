@@ -17,6 +17,17 @@
   padding-right: 0.5rem;
 }
 
+.table {
+  margin-bottom: 0;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+  position: relative;
+}
+
 tr.bg-col th {
   background-color: #007bff;
   color: white;
@@ -27,8 +38,8 @@ tr.bg-total td {
   color: white;
 }
 
-table {
-  width: 100%;
+.mat-checkbox {
+  margin-bottom: 0.8rem;
 }
 
 /* input color class */

@@ -17,7 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from '@angular/material/table';
-import { FoodTableComponent } from './food-table/food-table.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FoodSchedule } from './food/food-schedule/food-schedule.component';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { FoodTableComponent } from './food-table/food-table.component';
     HeaderComponent,
     FoodComponent,
     FoodFormComponent,
-    FoodTableComponent
+    FoodSchedule
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import { FoodTableComponent } from './food-table/food-table.component';
     MatSelectModule,
     MatToolbarModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [CalorieNinjaService],
   bootstrap: [AppComponent]
