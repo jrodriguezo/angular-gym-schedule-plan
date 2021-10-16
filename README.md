@@ -1,12 +1,12 @@
 # AngularGymSchedulePlan - Foods4Bulking 
 
-![image](https://user-images.githubusercontent.com/36509669/137556914-129319b4-bd2e-4cad-a9ad-68739d94c630.png)
+![image](https://user-images.githubusercontent.com/36509669/137603654-63f2a270-f39f-443f-837d-5062a6617f61.png)
 
 Project in progress...
 
 - Make your daily routine; Make a plan.
 
-![image](https://user-images.githubusercontent.com/36509669/137556513-cb3fea98-42de-4ac1-bf22-030cd423ccb8.png)
+![image](https://user-images.githubusercontent.com/36509669/137604510-443ad246-2cc1-4d07-a3fb-051879bb0e24.png)
 
 Version 1.0.0 will be achieved when the following milestones are completed:
 
