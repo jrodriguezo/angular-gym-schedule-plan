@@ -1,0 +1,8 @@
+.food-table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  border-left: 1px solid currentColor;
+  text-align: center;
+}

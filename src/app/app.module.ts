@@ -19,6 +19,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FoodSchedule } from './food/food-schedule/food-schedule.component';
+import { FoodsService } from './food/foods.service';
+import { FoodTableComponent } from './food/food-table/food-table.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { FoodSchedule } from './food/food-schedule/food-schedule.component';
     HeaderComponent,
     FoodComponent,
     FoodFormComponent,
-    FoodSchedule
+    FoodSchedule,
+    FoodTableComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { FoodSchedule } from './food/food-schedule/food-schedule.component';
     MatTableModule,
     MatCheckboxModule
   ],
-  providers: [CalorieNinjaService],
+  providers: [CalorieNinjaService, FoodsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

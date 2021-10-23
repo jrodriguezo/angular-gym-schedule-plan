@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { Food } from '../food.model';
 import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
+import { FoodsService } from '../foods.service';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
   templateUrl: './food-form.component.html',
   styleUrls: ['./food-form.component.css']
 })
-export class FoodFormComponent implements OnInit {
+export class FoodFormComponent implements OnInit, OnDestroy {
 
   /* To check if needs customize macros */
   customizeMacros = false;
@@ -30,10 +32,6 @@ export class FoodFormComponent implements OnInit {
 
   /* Creating a new food with macros and ingredients*/
   //recipes: Recipe[] = [];
-  // 2nd once event is emitted, re-paint table
-  @Input() foods: Food[] = [];
-  // 1st emit this new Event when fullfill the form
-  @Output() postFormCreated  = new EventEmitter<Food>();
 
   onAddFood(form: NgForm){
     if (form.invalid) {
@@ -50,6 +48,7 @@ export class FoodFormComponent implements OnInit {
       calories: 0 // ¡WARNING! This is under development
     }
     this.newRecipe(food);
+    form.resetForm();
   }
 
   totalFoods(foods: Food[]){
@@ -73,12 +72,14 @@ export class FoodFormComponent implements OnInit {
     this.sumCalories = +(this.sumCalories.toFixed(2));
   }
 
-  onDeleteFood(key: number){
+  /*
+  onDeleteFood(id: number){
     this.foods.forEach((value,index)=>{
-        if(value.id==key) this.foods.splice(index,1);
+        if(value.id==id) this.foods.splice(index,1);
     });
     this.totalFoods(this.foods);
   }
+  */
 
   newRecipe(food: Food){
     this.calorieNinjaService.getFood(food.name).subscribe(data =>{
@@ -87,7 +88,6 @@ export class FoodFormComponent implements OnInit {
       if(apiResponse[0].length !== 0 && !this.customizeMacros){
         let foodMacrosResponse = apiResponse[0][0];
         food.name = food.name + ' (' + foodMacrosResponse.serving_size_g + 'g)';
-        //this.foods.push(foodMacrosResponse); // ¡WARNING! This is under development
         const postFood: Food = {
           id: food.id,
           name: food.name,
@@ -98,21 +98,26 @@ export class FoodFormComponent implements OnInit {
           sugars: foodMacrosResponse.sugar_g,
           calories: foodMacrosResponse.calories
         }
-        this.postFormCreated.emit(postFood);
+        //this.postFormCreated.emit(postFood);
+        this.foodsService.addFood(postFood);
       }else{
-        this.postFormCreated.emit(food);
+        //this.postFormCreated.emit(food);
+        this.foodsService.addFood(food);
       }
-      this.totalFoods(this.foods);
+      //this.totalFoods(this.foods);
     });
     this.id++;
   }
 
-  //displayedColumns = ['name','proteins','carbohydrates','fats'];
 
-  constructor(public calorieNinjaService: CalorieNinjaService) { }
-
+  constructor(public calorieNinjaService: CalorieNinjaService, public foodsService: FoodsService) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+
   }
 
 }
