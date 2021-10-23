@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr class="bg-col">
+        <th scope="col">No.</th>
+        <th scope="col">Food</th>
+        <th scope="col">Proteins (g)</th>
+        <th scope="col">Carbohydrates (g)</th>
+        <th scope="col">Fats (g)</th>
+        <th scope="col">Sugars (g)</th>
+        <th scope="col">kcal</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let food of foods">
+        <td>{{ food.id }}</td>
+        <td>{{ food.name }}</td>
+        <td>{{ food.proteins }}</td>
+        <td>{{ food.carbohydrates }}</td>
+        <td>{{ food.fats }}</td>
+        <td>{{ food.sugars }}</td>
+        <td>{{ food.calories }}</td>
+        <td>
+          <button mat-icon-button color="warn" (click)="onDeleteFood(food.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </td>
+      </tr>
+      <tr class="bg-total">
+        <td></td>
+        <td><strong>TOTAL</strong></td>
+        <td><strong>{{ sumPros }}</strong></td>
+        <td><strong>{{ sumCarbs }}</strong></td>
+        <td><strong>{{ sumFats }}</strong></td>
+        <td><strong>{{ sumSugars }}</strong></td>
+        <td><strong>{{ sumCalories }}</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

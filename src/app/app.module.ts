@@ -20,7 +20,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FoodSchedule } from './food/food-schedule/food-schedule.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

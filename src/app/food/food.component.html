@@ -1,5 +1,5 @@
 <div class="row">
     <div class="col-md-12">
-        <app-food-form></app-food-form>
+        <app-food-form (postFormCreated)="onPostAdded($event)" [foods]="storedFoods"></app-food-form>
     </div>
 </div>

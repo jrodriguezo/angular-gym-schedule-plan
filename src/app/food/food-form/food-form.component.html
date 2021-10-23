@@ -1,89 +1,92 @@
 <div class="col-md-12 pt-2 pb-2">
   <div class="food-form row">
     <div class="col-md-12">
-      <mat-card class="example-card">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Favorite food</mat-label>
-          <input matInput type="text" [(ngModel)]="recipeName" (keyup.enter)="onNewRecipe()">
-        </mat-form-field>
-        <mat-checkbox class="example-margin" [(ngModel)]="customizeMacros">Customize macros</mat-checkbox>
-        <div [hidden]="!customizeMacros" class="personalize-row row">
-          <div class="col-md-4">
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Proteins</mat-label>
-            <input matInput type="number" [(ngModel)]="recipePros" (keyup.enter)="onNewRecipe()">
+      <form (submit)="onAddFood(postFoodForm)" #postFoodForm="ngForm">
+        <mat-card class="example-card">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <input matInput type="text" name="foodName" ngModel required minlength="1" #foodName="ngModel">
+            <mat-error *ngIf="foodName.invalid">Please enter a food name.</mat-error>
           </mat-form-field>
-        </div>
-        <div class="col-md-4">
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Carbohydrates</mat-label>
-            <input matInput type="number" [(ngModel)]="recipeCarbs" (keyup.enter)="onNewRecipe()">
-          </mat-form-field>
+          <mat-checkbox class="example-margin" name="customMacros" [(ngModel)]="customizeMacros">Customize macros</mat-checkbox>
+          <div [hidden]="!customizeMacros" class="personalize-row row">
+            <div class="col-md-4">
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Proteins</mat-label>
+                <input matInput type="number" name="foodPros" ngModel>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Carbohydrates</mat-label>
+                <input matInput type="number" name="foodCarbs" ngModel>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Fats</mat-label>
+                <input matInput type="number" name="foodFats" ngModel>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="col-md-4">
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Fats</mat-label>
-            <input matInput type="number" [(ngModel)]="recipeFats" (keyup.enter)="onNewRecipe()">
-          </mat-form-field>
+          <div class="d-flex justify-content-center">
+            <button mat-stroked-button type="submit">Add</button>
           </div>
-      </div>
-        <div class="d-flex justify-content-center">
-          <button mat-stroked-button (click)="onNewRecipe()" [disabled]="!recipeName">Add</button>
-        </div>
-      </mat-card>
+        </mat-card>
+      </form>
     </div>
   </div>
 
   <div class="food-form row">
     <div class="col-md-12 pt-2">
       <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr class="bg-col">
-            <th scope="col">No.</th>
-            <th scope="col">Food</th>
-            <th scope="col">Proteins (g)</th>
-            <th scope="col">Carbohydrates (g)</th>
-            <th scope="col">Fats (g)</th>
-            <th scope="col">Sugars (g)</th>
-            <th scope="col">kcal</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let recipe of recipes">
-            <td>{{ recipe.id }}</td>
-            <td>{{ recipe.name }}</td>
-            <td>{{ recipe.proteins }}</td>
-            <td>{{ recipe.carbohydrates }}</td>
-            <td>{{ recipe.fats }}</td>
-            <td>{{ recipe.sugars }}</td>
-            <td>{{ recipe.calories }}</td>
-            <td>
-              <button mat-icon-button color="warn" (click)="onDeleteRecipe(recipe.id)">
-                <mat-icon>close</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr class="bg-total">
-            <td></td>
-            <td><strong>TOTAL</strong></td>
-            <td><strong>{{ sumPros }}</strong></td>
-            <td><strong>{{ sumCarbs }}</strong></td>
-            <td><strong>{{ sumFats }}</strong></td>
-            <td><strong>{{ sumSugars }}</strong></td>
-            <td><strong>{{ sumCalories }}</strong></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-col">
+              <th scope="col">No.</th>
+              <th scope="col">Food</th>
+              <th scope="col">Proteins (g)</th>
+              <th scope="col">Carbohydrates (g)</th>
+              <th scope="col">Fats (g)</th>
+              <th scope="col">Sugars (g)</th>
+              <th scope="col">kcal</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let food of foods">
+              <td>{{ food.id }}</td>
+              <td>{{ food.name }}</td>
+              <td>{{ food.proteins }}</td>
+              <td>{{ food.carbohydrates }}</td>
+              <td>{{ food.fats }}</td>
+              <td>{{ food.sugars }}</td>
+              <td>{{ food.calories }}</td>
+              <td>
+                <button mat-icon-button color="warn" (click)="onDeleteFood(food.id)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+            <tr class="bg-total">
+              <td></td>
+              <td><strong>TOTAL</strong></td>
+              <td><strong>{{ sumPros }}</strong></td>
+              <td><strong>{{ sumCarbs }}</strong></td>
+              <td><strong>{{ sumFats }}</strong></td>
+              <td><strong>{{ sumSugars }}</strong></td>
+              <td><strong>{{ sumCalories }}</strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
 
-  <!--table mat-table [dataSource]="recipes"  class="mat-elevation-z8">
+<!--table mat-table [dataSource]="recipes"  class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>

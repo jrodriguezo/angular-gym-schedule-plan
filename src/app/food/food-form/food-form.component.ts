@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../recipe.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { Food } from '../food.model';
 import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
+
 
 @Component({
   selector: 'app-food-form',
@@ -14,10 +17,6 @@ export class FoodFormComponent implements OnInit {
 
   /* Getting values from food-form*/
   id = 0;
-  recipeName = '';
-  recipePros = 0;
-  recipeCarbs = 0;
-  recipeFats = 0;
 
   /* Sum of every proteins, carbohydrates and fats added in the table*/
   sumPros = 0;
@@ -27,29 +26,45 @@ export class FoodFormComponent implements OnInit {
   sumCalories = 0;
 
   /* Response from CaloriesNinja saved in an array to iterate */
-  foods: any = [];
+  //foods: any = [];
 
   /* Creating a new food with macros and ingredients*/
-  recipes: Recipe[] = [];
+  //recipes: Recipe[] = [];
+  // 2nd once event is emitted, re-paint table
+  @Input() foods: Food[] = [];
+  // 1st emit this new Event when fullfill the form
+  @Output() postFormCreated  = new EventEmitter<Food>();
 
-  onNewRecipe(){
-    this.newRecipe(this.id,this.recipeName,this.recipePros,this.recipeCarbs,this.recipeFats);
+  onAddFood(form: NgForm){
+    if (form.invalid) {
+      return;
+    }
+    const food: Food = {
+      id: this.id,
+      name: form.value.foodName,
+      proteins: form.value.foodPros,
+      carbohydrates: form.value.foodCarbs,
+      fats: form.value.foodFats,
+      serving_size_g: 0, // ¡WARNING! This is under development
+      sugars: 0, // ¡WARNING! This is under development
+      calories: 0 // ¡WARNING! This is under development
+    }
+    this.newRecipe(food);
   }
 
-  totalRecipes(recipes: Recipe[]){
+  totalFoods(foods: Food[]){
     this.sumPros = 0;
     this.sumCarbs = 0;
     this.sumFats = 0;
     this.sumSugars = 0;
     this.sumCalories = 0;
-    for(var i = 0; i < recipes.length; i++){
-      this.sumPros += recipes[i].proteins;
-      this.sumCarbs += recipes[i].carbohydrates;
-      this.sumFats += recipes[i].fats;
-      this.sumSugars += recipes[i].sugars;
-      this.sumCalories += recipes[i].calories;
+    for(var i = 0; i < foods.length; i++){
+      this.sumPros += foods[i].proteins;
+      this.sumCarbs += foods[i].carbohydrates;
+      this.sumFats += foods[i].fats;
+      this.sumSugars += foods[i].sugars;
+      this.sumCalories += foods[i].calories;
     }
-
     //Just taking 2 decimals to show in table
     this.sumPros = +(this.sumPros.toFixed(2));
     this.sumCarbs = +(this.sumCarbs.toFixed(2));
@@ -58,42 +73,38 @@ export class FoodFormComponent implements OnInit {
     this.sumCalories = +(this.sumCalories.toFixed(2));
   }
 
-  onDeleteRecipe(key: number){
-    this.recipes.forEach((value,index)=>{
-        if(value.id==key) this.recipes.splice(index,1);
+  onDeleteFood(key: number){
+    this.foods.forEach((value,index)=>{
+        if(value.id==key) this.foods.splice(index,1);
     });
-    this.totalRecipes(this.recipes);
+    this.totalFoods(this.foods);
   }
 
-  newRecipe(id: number, name: string, proteins: number, carbohydrates: number, fats: number){
-    this.calorieNinjaService.getFood(name).subscribe(data =>{
+  newRecipe(food: Food){
+    this.calorieNinjaService.getFood(food.name).subscribe(data =>{
       console.log(data);
       let apiResponse = Object.values(data);
       if(apiResponse[0].length !== 0 && !this.customizeMacros){
         let foodMacrosResponse = apiResponse[0][0];
-        let fullFoodName = name + ' (' + foodMacrosResponse.serving_size_g + 'g)';
-        name = fullFoodName;
-        this.foods.push(foodMacrosResponse);
-        this.recipes.push(new Recipe(
-          id,
-          name,
-          foodMacrosResponse.serving_size_g,
-          foodMacrosResponse.protein_g,
-          foodMacrosResponse.carbohydrates_total_g,
-          foodMacrosResponse.fat_total_g,
-          foodMacrosResponse.sugar_g,
-          foodMacrosResponse.calories
-          ));
+        food.name = food.name + ' (' + foodMacrosResponse.serving_size_g + 'g)';
+        //this.foods.push(foodMacrosResponse); // ¡WARNING! This is under development
+        const postFood: Food = {
+          id: food.id,
+          name: food.name,
+          proteins: foodMacrosResponse.protein_g,
+          carbohydrates: foodMacrosResponse.carbohydrates_total_g,
+          fats: foodMacrosResponse.fat_total_g,
+          serving_size_g: foodMacrosResponse.serving_size_g,
+          sugars: foodMacrosResponse.sugar_g,
+          calories: foodMacrosResponse.calories
+        }
+        this.postFormCreated.emit(postFood);
       }else{
-        this.recipes.push(new Recipe(id,name,100,proteins,carbohydrates,fats,0,0));
+        this.postFormCreated.emit(food);
       }
-      this.totalRecipes(this.recipes);
+      this.totalFoods(this.foods);
     });
     this.id++;
-    this.recipeName = '';
-    this.recipePros = 0;
-    this.recipeCarbs = 0;
-    this.recipeFats = 0;
   }
 
   //displayedColumns = ['name','proteins','carbohydrates','fats'];

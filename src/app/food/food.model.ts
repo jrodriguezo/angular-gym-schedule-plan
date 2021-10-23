@@ -1,4 +1,4 @@
-export class Recipe{
+export class Food{
     public id: number;
     public name: string;
     public serving_size_g: number;

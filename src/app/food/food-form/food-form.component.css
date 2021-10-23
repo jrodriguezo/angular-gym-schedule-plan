@@ -1,4 +1,6 @@
 /* https://colorswall.com/palette/52989/ */
+/* https://www.schemecolor.com/strong-blue-gym.php */
+/* https://abhijitrawool.com/restaurant-website-color-palettes/ */
 
 .example-form-field {
   width: 100%;
@@ -9,7 +11,7 @@
 }
 
 .example-card {
-  background-color: #007bff;
+  background-color: #3677c7;
 }
 
 .food-form {
@@ -29,30 +31,31 @@ td {
 }
 
 tr.bg-col th {
-  background-color: #007bff;
-  color: white;
+  background-color: #3677c7;
+  color: #e8e8e9;
 }
 
 tr.bg-total td {
-  background-color: #007bff;
-  color: white;
+  background-color: #364966;
+  color: #e8e8e9;
 }
 
 .mat-checkbox {
-  margin-bottom: 0.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* input color class */
 ::ng-deep input.mat-input-element {
-  color: white;
+  color: #e8e8e9;
 }
 
 /* Change label color on focused */
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: white !important;
+  color: #e8e8e9 !important;
 }
 
 /* underline border color on focused */
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
-  background-color: white !important;
+  background-color: #e8e8e9 !important;
 }
