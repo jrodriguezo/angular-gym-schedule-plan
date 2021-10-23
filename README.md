@@ -1,20 +1,25 @@
 # AngularGymSchedulePlan - Foods4Bulking 
 
-![image](https://user-images.githubusercontent.com/36509669/137603654-63f2a270-f39f-443f-837d-5062a6617f61.png)
+![image](https://user-images.githubusercontent.com/36509669/138559208-bee658b5-95ca-4e18-adfa-c403556bfb08.png)
 
 Project in progress...
 
-- Make your daily routine; Make a plan.
+- Make your daily routine; Make a plan. Insert the foods you would like to get macros from the CalorieNinjas API data. If you are not agree with the response given, then you can modify them.
 
-![image](https://user-images.githubusercontent.com/36509669/137604510-443ad246-2cc1-4d07-a3fb-051879bb0e24.png)
+![image](https://user-images.githubusercontent.com/36509669/138559271-ab48c8df-83d1-426f-9a9c-8fda24c8b555.png)
+
+- An example could be
+
+![image](https://user-images.githubusercontent.com/36509669/138557857-10c46514-1faa-4667-b6ed-747c3990b9f3.png)
 
 Version 1.0.0 will be achieved when the following milestones are completed:
 
-- [x] API CalorieNinjas implemented
+- [x] CalorieNinjas API implemented
 - [ ] Basic UX/UI
 - [ ] Schedule
 - [ ] Index (Cover Page)
 - [ ] Navigation
+- [ ] NodeJS / Express
 - [ ] MongoDB
 
 # About the project
