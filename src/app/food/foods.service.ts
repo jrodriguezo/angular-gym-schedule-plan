@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CalorieNinjaService } from './calorie-ninja/calorie-ninja.service';
 import { Food } from './food.model';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,14 @@ export class FoodsService {
   private foods: Food[] = [];
   private foodsUpdated = new Subject<Food[]>();
 
+  constructor(private http: HttpClient){}
+
   getFoods(){
-    return [...this.foods];
+    this.http.get<{message: string, foods: Food[]}>('http://localhost:3000/api/foods')
+    .subscribe((foodsData) => {
+      this.foods = foodsData.foods;
+      this.foodsUpdated.next([...this.foods]);
+    });
   }
 
   getFoodsListener(){
@@ -19,9 +25,14 @@ export class FoodsService {
   }
 
   addFood(food: Food){
-    this.foods.push(food);
-    this.foodsUpdated.next([...this.foods]);
-  }
+    //Saving in server
+    this.http.post<{message: string}>('http://localhost:3000/api/posts', food)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        //Saving in local
+        this.foods.push(food);
+        this.foodsUpdated.next([...this.foods]);
+      });
 
-  constructor(public calorieNijaService: CalorieNinjaService){}
+  }
 }

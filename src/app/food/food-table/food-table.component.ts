@@ -17,7 +17,7 @@ export class FoodTableComponent implements OnInit, OnDestroy {
   constructor(public foodsService: FoodsService) { }
 
   ngOnInit(): void {
-    this.foods = this.foodsService.getFoods();
+    this.foodsService.getFoods();
     this.foodsSub = this.foodsService.getFoodsListener()
       .subscribe((foods: Food[]) => {
           this.foods = foods;

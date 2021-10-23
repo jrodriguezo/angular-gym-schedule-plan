@@ -44,7 +44,8 @@ import { FoodTableComponent } from './food/food-table/food-table.component';
     MatToolbarModule,
     HttpClientModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    HttpClientModule
   ],
   providers: [CalorieNinjaService, FoodsService],
   bootstrap: [AppComponent]
