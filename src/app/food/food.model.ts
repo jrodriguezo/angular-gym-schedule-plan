@@ -1,5 +1,4 @@
 export class Food{
-    public id: number;
     public name: string;
     public serving_size_g: number;
     //public description: string;
@@ -10,8 +9,7 @@ export class Food{
     public calories: number;
     //public imagePath: string;
 
-    constructor(id: number, name: string, service_size_g: number, proteins: number, carbohydrates: number, fats: number, sugars: number, calories: number){
-        this.id = id;
+    constructor(name: string, service_size_g: number, proteins: number, carbohydrates: number, fats: number, sugars: number, calories: number){
         this.name = name;
         this.serving_size_g = service_size_g;
         //this.description = description;

@@ -1,5 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const MONGODB_URI = 'mongodb://localhost/food-collection'
+
+mongoose.connect(MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+})
+  .then(db => console.log('Connected to database!'))
+  .catch(err => console.log('err'+err));
+
+const Food = require('./models/food');
 
 const app = express();
 
@@ -17,7 +29,8 @@ app.use((req, res , next) => {
 });
 
 app.post('/api/posts', (req, res, next) => {
-  const food = req.body;
+  const food = new Food(req.body);
+  food.save();
   console.log(food);
   res.status(200).json({
     message: 'Food added successfully'
@@ -27,32 +40,13 @@ app.post('/api/posts', (req, res, next) => {
 
 //middleware
 app.use('/api/foods', (req, res, next) => {
-  const foods = [
-    {
-      id: 1,
-      name: "chiken",
-      proteins: 10,
-      carbohydrates: 69,
-      fats: 19,
-      serving_size_g: 0,
-      sugars: 0,
-      calories: 0
-  },
-    {
-      id: 2,
-      name: "rice",
-      proteins: 1,
-      carbohydrates: 89,
-      fats: 5,
-      serving_size_g: 0,
-      sugars: 0,
-      calories: 0
-  }
-];
-  res.status(200).json({
-    message: "Foods fetched succesfully!",
-    foods: foods
-  });
+  Food.find()
+    .then(documents => {
+      res.status(200).json({
+        message: "Foods fetched succesfully!",
+        foods: documents
+      });
+    });
 });
 
 module.exports = app;

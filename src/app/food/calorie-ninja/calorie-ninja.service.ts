@@ -11,7 +11,7 @@ export class CalorieNinjaService {
   getFood(query: string) {
     let url =  'https://api.calorieninjas.com/v1/nutrition?query=' + query;
     return this.http.get( url , {
-      headers: { 'X-Api-Key': 'YOUR-Api-Key'}
+      headers: { 'X-Api-Key': 'YOUR_Api_Key'}
     });
   }
 }
