@@ -26,7 +26,7 @@ Version 1.0.0 will be achieved when the following milestones are completed:
 
 Steps to use the application:
 
-In two differentes nodes (typically inside in visual studio code) run the following commands lines
+In two differentes nodes (typically inside visual studio code) run the following commands lines
 
 ```js
 ng serve                                // For angular client http://localhost:4200
