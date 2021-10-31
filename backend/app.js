@@ -9,13 +9,14 @@ mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true
 })
   .then(db => console.log('Connected to database!'))
-  .catch(err => console.log('err'+err));
+  .catch(err => console.log('Connection failed due to '+err));
 
 const Food = require('./models/food');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res , next) => {
   res.setHeader('Access-Control-Allow-Origin','*');
@@ -28,18 +29,19 @@ app.use((req, res , next) => {
   next();
 });
 
-app.post('/api/posts', (req, res, next) => {
+app.post('/api/foods', (req, res, next) => {
   const food = new Food(req.body);
-  food.save();
-  console.log(food);
-  res.status(200).json({
-    message: 'Food added successfully'
+  food.save().then(result => {
+    res.status(200).json({
+      message: 'Food added successfully',
+      foodId: result._id
+    });
   });
 });
 
 
 //middleware
-app.use('/api/foods', (req, res, next) => {
+app.get('/api/foods', (req, res, next) => {
   Food.find()
     .then(documents => {
       res.status(200).json({
@@ -47,6 +49,16 @@ app.use('/api/foods', (req, res, next) => {
         foods: documents
       });
     });
+});
+
+app.delete('/api/foods/:id', (req,res,next)=>{
+  console.log(req.params.id);
+  Food.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: 'Food deleted'
+    });
+  });
 });
 
 module.exports = app;

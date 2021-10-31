@@ -24,6 +24,11 @@ export class FoodTableComponent implements OnInit, OnDestroy {
     });
   }
 
+  onDeleteFood(foodId: string){
+    this.foodsService.deleteFood(foodId);
+  }
+
+
   ngOnDestroy(): void {
     this.foodsSub.unsubscribe();
   }

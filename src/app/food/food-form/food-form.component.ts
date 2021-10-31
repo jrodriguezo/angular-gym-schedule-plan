@@ -17,6 +17,9 @@ export class FoodFormComponent implements OnInit, OnDestroy {
   /* To check if needs customize macros */
   customizeMacros = false;
 
+  /* Getting values from food-form*/
+  id = 0;
+
   /* Sum of every proteins, carbohydrates and fats added in the table*/
   sumPros = 0;
   sumCarbs = 0;
@@ -35,6 +38,7 @@ export class FoodFormComponent implements OnInit, OnDestroy {
       return;
     }
     const food: Food = {
+      id: null,
       name: form.value.foodName,
       proteins: form.value.foodPros,
       carbohydrates: form.value.foodCarbs,
@@ -68,15 +72,6 @@ export class FoodFormComponent implements OnInit, OnDestroy {
     this.sumCalories = +(this.sumCalories.toFixed(2));
   }
 
-  /*
-  onDeleteFood(id: number){
-    this.foods.forEach((value,index)=>{
-        if(value.id==id) this.foods.splice(index,1);
-    });
-    this.totalFoods(this.foods);
-  }
-  */
-
   newRecipe(food: Food){
     this.calorieNinjaService.getFood(food.name).subscribe(data =>{
       console.log(data);
@@ -85,6 +80,7 @@ export class FoodFormComponent implements OnInit, OnDestroy {
         let foodMacrosResponse = apiResponse[0][0];
         food.name = food.name + ' (' + foodMacrosResponse.serving_size_g + 'g)';
         const postFood: Food = {
+          id: null,
           name: food.name,
           proteins: foodMacrosResponse.protein_g,
           carbohydrates: foodMacrosResponse.carbohydrates_total_g,
