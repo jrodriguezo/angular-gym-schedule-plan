@@ -21,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FoodSchedule } from './food/food-schedule/food-schedule.component';
 import { FoodsService } from './food/foods.service';
 import { FoodTableComponent } from './food/food-table/food-table.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FoodTableComponent } from './food/food-table/food-table.component';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
