@@ -3,6 +3,7 @@ import { Food } from './food.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class FoodsService {
   private foods: Food[] = [];
   private foodsUpdated = new Subject<Food[]>();
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router:  Router){}
 
   getFoods(){
     this.http
@@ -46,7 +47,10 @@ export class FoodsService {
   }
 
   getFood(id: string){
-    return {...this.foods.find(p => p.id === id)};
+    //return {...this.foods.find(p => p.id === id)};
+    return this.http.get<{message: string, foodById: Food}>(
+      "http://localhost:3000/api/foods/" + id
+    );
   }
 
   addFood(food: Food){
@@ -58,12 +62,20 @@ export class FoodsService {
         food.id = id;
         this.foods.push(food);
         this.foodsUpdated.next([...this.foods]);
+        this.router.navigate(['/']);
       });
   }
 
   updateFood(food: Food){
     this.http.put("http://localhost:3000/api/foods/"+ food.id, food)
-     .subscribe(response => console.log(response));
+     .subscribe(response => {
+       const updatedFoods = [...this.foods];
+       const oldFoodIndex = updatedFoods.findIndex(p => p.id === food.id);
+       updatedFoods[oldFoodIndex] = food;
+       this.foods = updatedFoods;
+       this.foodsUpdated.next([...this.foods]);
+       this.router.navigate(['/']);
+     });
   }
 
   deleteFood(foodId: string){

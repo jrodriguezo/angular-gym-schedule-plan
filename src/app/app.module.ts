@@ -22,6 +22,8 @@ import { FoodSchedule } from './food/food-schedule/food-schedule.component';
 import { FoodsService } from './food/foods.service';
 import { FoodTableComponent } from './food/food-table/food-table.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     MatTableModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [CalorieNinjaService, FoodsService],

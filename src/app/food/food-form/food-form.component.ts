@@ -39,6 +39,7 @@ export class FoodFormComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     const food: Food = {
       id: (!this.foodId) ? 'null' : this.foodId,
       name: form.value.foodName,
@@ -110,13 +111,18 @@ export class FoodFormComponent implements OnInit, OnDestroy {
   private mode = 'create';
   private foodId: string;
   food: Food;
+  isLoading = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has('foodId')){
         this.mode = 'edit';
         this.foodId = paramMap.get('foodId');
-        this.food = this.foodsService.getFood(this.foodId);
+        this.isLoading = true;
+        this.foodsService.getFood(this.foodId).subscribe((response) => {
+          this.isLoading = false;
+          this.food = response.foodById;
+        });
       }else{
         this.mode = 'create';
         this.foodId = null;

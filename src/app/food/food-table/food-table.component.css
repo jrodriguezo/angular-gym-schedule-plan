@@ -6,3 +6,8 @@
   border-left: 1px solid currentColor;
   text-align: center;
 }
+
+.info-text {
+  margin: 20px;
+  text-align: center;
+}
