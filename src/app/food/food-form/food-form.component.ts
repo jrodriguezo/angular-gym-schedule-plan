@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { Food } from '../food.model';
 import { CalorieNinjaService } from '../calorie-ninja/calorie-ninja.service';
 import { FoodsService } from '../foods.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -33,12 +35,12 @@ export class FoodFormComponent implements OnInit, OnDestroy {
   /* Creating a new food with macros and ingredients*/
   //recipes: Recipe[] = [];
 
-  onAddFood(form: NgForm){
+  onSaveFood(form: NgForm){
     if (form.invalid) {
       return;
     }
     const food: Food = {
-      id: null,
+      id: (!this.foodId) ? 'null' : this.foodId,
       name: form.value.foodName,
       proteins: form.value.foodPros,
       carbohydrates: form.value.foodCarbs,
@@ -47,7 +49,13 @@ export class FoodFormComponent implements OnInit, OnDestroy {
       sugars: 0, // ¡WARNING! This is under development
       calories: 0 // ¡WARNING! This is under development
     }
-    this.newRecipe(food);
+    if(this.mode === 'create'){
+        this.newRecipe(food);
+    }else {
+
+      console.log(food);
+      this.foodsService.updateFood(food);
+    }
     form.resetForm();
   }
 
@@ -89,21 +97,31 @@ export class FoodFormComponent implements OnInit, OnDestroy {
           sugars: foodMacrosResponse.sugar_g,
           calories: foodMacrosResponse.calories
         }
-        //this.postFormCreated.emit(postFood);
-        this.foodsService.addFood(postFood);
+          this.foodsService.addFood(postFood);
       }else{
-        //this.postFormCreated.emit(food);
         this.foodsService.addFood(food);
       }
-      //this.totalFoods(this.foods);
     });
   }
 
 
-  constructor(public calorieNinjaService: CalorieNinjaService, public foodsService: FoodsService) { }
+  constructor(public calorieNinjaService: CalorieNinjaService, public foodsService: FoodsService, public route: ActivatedRoute) { }
+
+  private mode = 'create';
+  private foodId: string;
+  food: Food;
 
   ngOnInit(): void {
-
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if(paramMap.has('foodId')){
+        this.mode = 'edit';
+        this.foodId = paramMap.get('foodId');
+        this.food = this.foodsService.getFood(this.foodId);
+      }else{
+        this.mode = 'create';
+        this.foodId = null;
+      }
+    });
   }
 
   ngOnDestroy(): void {

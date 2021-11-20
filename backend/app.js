@@ -25,12 +25,12 @@ app.use((req, res , next) => {
     'Origin, X-Requested-With, Content-type, Accept');
   res.setHeader(
     'Access-Control-Allow-Methods',
-    'GET, POST, PATCH, DELETE, OPTIONS');
+    'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   next();
 });
 
 app.post('/api/foods', (req, res, next) => {
-  const food = new Food(req.body);
+  const food = new Food(req.body); //This creates a new Food object with a _id
   food.save().then(result => {
     res.status(200).json({
       message: 'Food added successfully',
@@ -39,6 +39,12 @@ app.post('/api/foods', (req, res, next) => {
   });
 });
 
+app.put('/api/foods/:id', (req, res, next) => {
+  const food = req.body; //Don't use Food object, because it will send an error due to _id from Mongo
+  Food.updateOne({_id: req.params.id}, food).then(result => {
+    res.status(200).json({message: "Food updated successfully"})
+  });
+});
 
 //middleware
 app.get('/api/foods', (req, res, next) => {

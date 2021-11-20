@@ -29,9 +29,9 @@
       <button mat-icon-button color="accent">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button mat-icon-button>
+      <a mat-icon-button [routerLink]="['edit', food.id]">
         <mat-icon>edit</mat-icon>
-      </button>
+      </a>
       <button mat-icon-button color="warn" (click)="onDeleteFood(food.id)">
         <mat-icon>delete_outline</mat-icon>
       </button>

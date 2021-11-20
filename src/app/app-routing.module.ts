@@ -5,7 +5,8 @@ import { FoodTableComponent } from "./food/food-table/food-table.component";
 
 const routes: Routes = [
   { path: '', component: FoodTableComponent },
-  { path: 'create', component: FoodFormComponent}
+  { path: 'create', component: FoodFormComponent},
+  { path: 'edit/:foodId', component: FoodFormComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

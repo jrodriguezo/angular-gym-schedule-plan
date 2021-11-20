@@ -45,6 +45,10 @@ export class FoodsService {
     return this.foodsUpdated.asObservable();
   }
 
+  getFood(id: string){
+    return {...this.foods.find(p => p.id === id)};
+  }
+
   addFood(food: Food){
     //Saving in server
     this.http.post<{message: string, foodId: string}>('http://localhost:3000/api/foods', food)
@@ -55,6 +59,11 @@ export class FoodsService {
         this.foods.push(food);
         this.foodsUpdated.next([...this.foods]);
       });
+  }
+
+  updateFood(food: Food){
+    this.http.put("http://localhost:3000/api/foods/"+ food.id, food)
+     .subscribe(response => console.log(response));
   }
 
   deleteFood(foodId: string){
