@@ -1,16 +1,29 @@
 # AngularGymSchedulePlan - Foods4Bulking 
 
-![image](https://user-images.githubusercontent.com/36509669/142741848-a7942cc8-03cf-4b21-b6fa-3db70e946bfa.png)
+![image](https://user-images.githubusercontent.com/36509669/142743726-1773ea02-f324-4e04-990a-7f642ca018de.png)
 
 Project in progress...
 
 - Make your daily routine; Make a plan. Insert the foods you would like to get macros from the CalorieNinjas API data. If you are not agree with the response given, then you can modify them.
 
-![image](https://user-images.githubusercontent.com/36509669/138559271-ab48c8df-83d1-426f-9a9c-8fda24c8b555.png)
+![image](https://user-images.githubusercontent.com/36509669/142743744-5f198093-0793-4053-a30a-a2c23ccbdea3.png)
+
+- Search your favourite food.
+
+![image](https://user-images.githubusercontent.com/36509669/142743891-a79d092d-a808-482b-8fa8-815009c2b8b3.png)
+
+- Basic user experience added
+
+![image](https://user-images.githubusercontent.com/36509669/142743805-38a6c5e3-76f3-4cfc-a4c3-ae718a42a6f3.png)
 
 - An example could be
 
-![image](https://user-images.githubusercontent.com/36509669/138557857-10c46514-1faa-4667-b6ed-747c3990b9f3.png)
+![image](https://user-images.githubusercontent.com/36509669/142743827-1532b9d7-a2df-45f9-b1e2-bc88fa80a13b.png)
+
+- Customize your macros
+
+![image](https://user-images.githubusercontent.com/36509669/142743863-2d06ffb4-6225-495a-a852-ca9ecca1f746.png)
+
 
 Version 1.0.0 will be achieved when the following milestones are completed:
 
