@@ -1,6 +1,6 @@
 # AngularGymSchedulePlan - Foods4Bulking 
 
-![image](https://user-images.githubusercontent.com/36509669/138559208-bee658b5-95ca-4e18-adfa-c403556bfb08.png)
+![image](https://user-images.githubusercontent.com/36509669/142741848-a7942cc8-03cf-4b21-b6fa-3db70e946bfa.png)
 
 Project in progress...
 
