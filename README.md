@@ -5,33 +5,35 @@
 Project in progress...
 
 - Make your daily routine; Make a plan. Insert the foods you would like to get macros from the CalorieNinjas API data. If you are not agree with the response given, then you can modify them.
+- Use your personal account (in progress ...)
 
-![image](https://user-images.githubusercontent.com/36509669/142743744-5f198093-0793-4053-a30a-a2c23ccbdea3.png)
+![image](https://user-images.githubusercontent.com/36509669/142772866-245cab0c-00df-4025-8951-5f9094a9ad12.png)
 
-- Search your favourite food.
+- Search your favourite food. Complete your plan.
 
-![image](https://user-images.githubusercontent.com/36509669/142743891-a79d092d-a808-482b-8fa8-815009c2b8b3.png)
+![image](https://user-images.githubusercontent.com/36509669/142772885-75d7f41c-0e1e-447c-8f41-33633f74633c.png)
 
 - Basic user experience added
 
-![image](https://user-images.githubusercontent.com/36509669/142743805-38a6c5e3-76f3-4cfc-a4c3-ae718a42a6f3.png)
+![image](https://user-images.githubusercontent.com/36509669/142772911-26ec4232-d748-46a5-80b2-b9129b9179b5.png)
 
-- An example could be
+- An example could be. 
 
-![image](https://user-images.githubusercontent.com/36509669/142743827-1532b9d7-a2df-45f9-b1e2-bc88fa80a13b.png)
+![image](https://user-images.githubusercontent.com/36509669/142772929-a4d4f395-8979-4c95-b43a-a11eb55bc798.png)
+(Edit, delete & pagination are available!)
 
 - Customize your macros
 
-![image](https://user-images.githubusercontent.com/36509669/142743863-2d06ffb4-6225-495a-a852-ca9ecca1f746.png)
+![image](https://user-images.githubusercontent.com/36509669/142773002-8668a2e0-19cb-4bfc-9581-7472334daaf3.png)
 
 
 Version 1.0.0 will be achieved when the following milestones are completed:
 
 - [x] CalorieNinjas API implemented
-- [ ] Basic UX/UI
+- [x] Basic UX/UI
 - [ ] Schedule
 - [ ] Index (Cover Page)
-- [ ] Navigation
+- [x] Navigation
 - [x] NodeJS / Express
 - [x] MongoDB
 
