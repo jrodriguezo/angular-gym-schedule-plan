@@ -24,6 +24,8 @@ import { FoodTableComponent } from './food/food-table/food-table.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoginComponent } from './auth/login/login.component';
+
 
 
 
@@ -34,7 +36,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FoodComponent,
     FoodFormComponent,
     FoodSchedule,
-    FoodTableComponent
+    FoodTableComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
