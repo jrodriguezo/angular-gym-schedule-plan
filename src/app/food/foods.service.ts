@@ -10,17 +10,18 @@ import { Router } from '@angular/router';
 })
 export class FoodsService {
   private foods: Food[] = [];
-  private foodsUpdated = new Subject<Food[]>();
+  private foodsUpdated = new Subject<{ foods: Food[], foodCount: number}>();
 
   constructor(private http: HttpClient, private router:  Router){}
 
-  getFoods(){
+  getFoods(foodsPerPage: number, currentPage: number){
+    const queryParams = `?pageSize=${foodsPerPage}&page=${currentPage}`;
     this.http
-    .get<{message: string, foods: Food[]}>(
-      'http://localhost:3000/api/foods'
+    .get<{message: string, foods: Food[], maxFoods: number}>(
+      'http://localhost:3000/api/foods' + queryParams
       )
     .pipe(map((foodsData) =>{
-      return foodsData.foods.map(food => {
+      return { foods: foodsData.foods.map(food => {
         //console.log(Object.keys(food));
         //JS need to do this before, because _id is not detected
         var foodJSON = JSON.parse(JSON.stringify(food));
@@ -34,11 +35,11 @@ export class FoodsService {
           sugars: foodJSON.sugars,
           calories: foodJSON.calories
         };
-      });
+      }), maxFoods: foodsData.maxFoods};
     }))
     .subscribe((transformedData) => {
-      this.foods = transformedData;
-      this.foodsUpdated.next([...this.foods]);
+      this.foods = transformedData.foods;
+      this.foodsUpdated.next({ foods: [...this.foods], foodCount: transformedData.maxFoods});
     });
   }
 
@@ -57,11 +58,6 @@ export class FoodsService {
     //Saving in server
     this.http.post<{message: string, foodId: string}>('http://localhost:3000/api/foods', food)
       .subscribe((responseData) => {
-        //Saving in local
-        const id = responseData.foodId;
-        food.id = id;
-        this.foods.push(food);
-        this.foodsUpdated.next([...this.foods]);
         this.router.navigate(['/']);
       });
   }
@@ -69,22 +65,12 @@ export class FoodsService {
   updateFood(food: Food){
     this.http.put("http://localhost:3000/api/foods/"+ food.id, food)
      .subscribe(response => {
-       const updatedFoods = [...this.foods];
-       const oldFoodIndex = updatedFoods.findIndex(p => p.id === food.id);
-       updatedFoods[oldFoodIndex] = food;
-       this.foods = updatedFoods;
-       this.foodsUpdated.next([...this.foods]);
        this.router.navigate(['/']);
      });
   }
 
   deleteFood(foodId: string){
-    this.http.delete("http://localhost:3000/api/foods/"+ foodId)
-      .subscribe(()=>{
-        const updatedFoods = this.foods.filter(food => food.id !== foodId);
-        this.foods = updatedFoods;
-        this.foodsUpdated.next([...this.foods]);
-      });
+    return this.http.delete("http://localhost:3000/api/foods/"+ foodId);
 
   }
 

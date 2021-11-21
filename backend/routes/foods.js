@@ -22,11 +22,24 @@ router.put('/:id', (req, res, next) => {
 
 //middleware
 router.get('', (req, res, next) => {
-  Food.find()
+  const pageSize = +req.query.pageSize;
+  const currentPage = +req.query.page;
+  const foodQuery = Food.find();
+  let fetchedFoods;
+  if(pageSize && currentPage){
+    foodQuery
+    .skip(pageSize * (currentPage - 1))
+    .limit(pageSize);
+  }
+  foodQuery
     .then(documents => {
+      fetchedFoods = documents;
+      return Food.count();
+    }).then(count => {
       res.status(200).json({
         message: "Foods fetched succesfully!",
-        foods: documents
+        foods: fetchedFoods,
+        maxFoods: count
       });
     });
 });

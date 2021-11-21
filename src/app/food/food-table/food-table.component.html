@@ -3,30 +3,36 @@
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
     <td mat-cell *matCellDef="let food"> {{ food.name }} </td>
+    <td mat-footer-cell *matFooterCellDef> TOTAL </td>
   </ng-container>
   <ng-container matColumnDef="proteins">
     <th mat-header-cell *matHeaderCellDef>Pros(g)</th>
     <td mat-cell *matCellDef="let food"> {{ food.proteins }} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ totalMacros.proteins.toFixed(2) }}</td>
   </ng-container>
   <ng-container matColumnDef="carbohydrates">
     <th mat-header-cell *matHeaderCellDef>Carbs(g)</th>
     <td mat-cell *matCellDef="let food"> {{ food.carbohydrates }} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ totalMacros.carbohydrates.toFixed(2) }}</td>
   </ng-container>
   <ng-container matColumnDef="fats">
     <th mat-header-cell *matHeaderCellDef>Fats(g)</th>
     <td mat-cell *matCellDef="let food"> {{ food.fats }} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ totalMacros.fats.toFixed(2) }}</td>
   </ng-container>
   <ng-container matColumnDef="sugars">
     <th mat-header-cell *matHeaderCellDef>Sugars(g)</th>
     <td mat-cell *matCellDef="let food"> {{ food.sugars }} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ totalMacros.sugars.toFixed(2) }}</td>
   </ng-container>
   <ng-container matColumnDef="calories">
     <th mat-header-cell *matHeaderCellDef>Kcal</th>
     <td mat-cell *matCellDef="let food"> {{ food.calories }} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ totalMacros.calories.toFixed(2) }}</td>
   </ng-container>
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let food">
+    <th mat-header-cell *matHeaderCellDef class="actionsColumn">Actions</th>
+    <td mat-cell *matCellDef="let food" class="actionsColumn">
       <button mat-icon-button color="accent">
         <mat-icon>favorite_border</mat-icon>
       </button>
@@ -37,8 +43,18 @@
         <mat-icon>delete_outline</mat-icon>
       </button>
     </td>
+    <td mat-footer-cell *matFooterCellDef class="actionsColumn"></td>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>
+<mat-paginator
+*ngIf="foods.length > 0"
+  [pageSizeOptions]="pageSizeOptions"
+  [length]="totalFoods"
+  [pageSize]="foodsPerPage"
+  (page)="onChangedPage($event)"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements">
+</mat-paginator>
