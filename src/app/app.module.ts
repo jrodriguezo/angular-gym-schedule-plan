@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FoodSchedule } from './food/food-schedule/food-schedule.component';
@@ -25,6 +25,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
@@ -37,7 +40,8 @@ import { LoginComponent } from './auth/login/login.component';
     FoodFormComponent,
     FoodSchedule,
     FoodTableComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,7 @@ import { LoginComponent } from './auth/login/login.component';
     MatPaginatorModule,
     HttpClientModule
   ],
-  providers: [CalorieNinjaService, FoodsService],
+  providers: [CalorieNinjaService, FoodsService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

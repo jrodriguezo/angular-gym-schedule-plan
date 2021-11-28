@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const foodsRoutes = require('./routes/foods');
+const userRoutes = require('./routes/user');
 
 const MONGODB_URI = 'mongodb://localhost/food-collection'
 
@@ -23,7 +24,7 @@ app.use((req, res , next) => {
   res.setHeader('Access-Control-Allow-Origin','*');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-type, Accept');
+    'Origin, X-Requested-With, Content-type, Accept, Authorization');
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, PUT, PATCH, DELETE, OPTIONS');
@@ -31,6 +32,7 @@ app.use((req, res , next) => {
 });
 
 app.use('/api/foods',foodsRoutes);
+app.use('/api/user',userRoutes);
 
 
 module.exports = app;

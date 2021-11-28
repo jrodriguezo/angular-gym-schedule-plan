@@ -1,14 +1,20 @@
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/"><img src="/assets/img/foods4bulking-white.png" alt="Foods4Bulking" width="auto" height="50"></a>
+    <a *ngIf="userIsAuthenticated" routerLink="/"><img src="/assets/img/foods4bulking-white.png" alt="Foods4Bulking" width="auto" height="50"></a>
   </span>
   <span class="spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">Create</a>
     </li>
-    <li>
-      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Log-in</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <button mat-button (click)="onLogout()">Log-out</button>
     </li>
   </ul>
 </mat-toolbar>
