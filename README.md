@@ -5,29 +5,37 @@
 Project in progress...
 
 - Make your daily routine; Make a plan. Insert the foods you would like to get macros from the CalorieNinjas API data. If you are not agree with the response given, then you can modify them.
-- Use your personal account (in progress ...)
 
-![image](https://user-images.githubusercontent.com/36509669/142772866-245cab0c-00df-4025-8951-5f9094a9ad12.png)
+![image](https://user-images.githubusercontent.com/36509669/143782978-e7c5e82d-fb3e-4f95-97de-190d82ab9f6e.png)
+
+- Use your personal account as follows:
+
+![image](https://user-images.githubusercontent.com/36509669/143782861-b17cca9d-4c89-4aa6-adf7-eb6779a4af1d.png)
 
 - Search your favourite food. Complete your plan.
 
-![image](https://user-images.githubusercontent.com/36509669/142772885-75d7f41c-0e1e-447c-8f41-33633f74633c.png)
+![image](https://user-images.githubusercontent.com/36509669/143783051-220115cc-7e38-4970-ab87-0d1935994548.png)
+
+Customize your macros (Not mandatory)
+
+![image](https://user-images.githubusercontent.com/36509669/143783137-04c1eda7-5900-4847-bc5b-a605c411f64c.png)
 
 - Basic user experience added
 
-![image](https://user-images.githubusercontent.com/36509669/142772911-26ec4232-d748-46a5-80b2-b9129b9179b5.png)
+Spinners
 
-- An example could be. 
+![image](https://user-images.githubusercontent.com/36509669/143783092-de4cc4e1-9e6f-418a-acb0-592fbf5963d7.png)
 
-![image](https://user-images.githubusercontent.com/36509669/142772929-a4d4f395-8979-4c95-b43a-a11eb55bc798.png)
-(Edit, delete & pagination are available!)
++Spinners with sense of humor
 
-- Customize your macros
+![image](https://user-images.githubusercontent.com/36509669/143782886-e406d755-33af-48e1-8d02-dac86559bf93.png)
 
-![image](https://user-images.githubusercontent.com/36509669/142773002-8668a2e0-19cb-4bfc-9581-7472334daaf3.png)
+Validators in forms
+
+![image](https://user-images.githubusercontent.com/36509669/143783198-0e057b34-9cfe-434e-a4f2-937ceefc556e.png)
 
 
-Version 1.0.0 will be achieved when the following milestones are completed:
+### Version 1.0.0 will be achieved when the following milestones are completed:
 
 - [x] CalorieNinjas API implemented
 - [x] Basic UX/UI
@@ -36,6 +44,8 @@ Version 1.0.0 will be achieved when the following milestones are completed:
 - [x] Navigation
 - [x] NodeJS / Express
 - [x] MongoDB
+- [x] Authentication
+- [ ] Authorization
 
 # About the project
 
