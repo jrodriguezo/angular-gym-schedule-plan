@@ -1,4 +1,10 @@
-<app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<div style="min-height:100vh; display:flex; flex-direction:column;
+            justify-content:space-between;"> <!-- Those divs are used for the footer fixed at the bottom-->
+  <div> <!-- Wrapper (Without footer) -->
+    <app-header></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div> <!-- End: Wrapper (Without footer) -->
+<app-footer></app-footer>
+</div>

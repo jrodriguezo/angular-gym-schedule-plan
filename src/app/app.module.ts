@@ -28,6 +28,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AuthGuard } from './auth/auth.guard';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -36,12 +37,14 @@ import { AuthGuard } from './auth/auth.guard';
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     FoodComponent,
     FoodFormComponent,
     FoodSchedule,
     FoodTableComponent,
     LoginComponent,
     SignupComponent
+
   ],
   imports: [
     BrowserModule,
