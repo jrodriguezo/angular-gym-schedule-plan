@@ -1,8 +1,7 @@
 # AngularGymSchedulePlan - Foods4Bulking 
 
-![image](https://user-images.githubusercontent.com/36509669/142743726-1773ea02-f324-4e04-990a-7f642ca018de.png)
 
-Project in progress...
+![image](https://user-images.githubusercontent.com/36509669/142743726-1773ea02-f324-4e04-990a-7f642ca018de.png)
 
 - Make your daily routine; Make a plan. Insert the foods you would like to get macros from the CalorieNinjas API data. If you are not agree with the response given, then you can modify them.
 
@@ -40,32 +39,52 @@ Validators in forms
 - [x] CalorieNinjas API implemented
 - [x] Basic UX/UI
 - [ ] Schedule
-- [ ] Index (Cover Page)
+- [x] Index (Cover Page)
 - [x] Navigation
 - [x] NodeJS / Express
 - [x] MongoDB
 - [x] Authentication
-- [ ] Authorization
+- [x] Authorization
 
 # About the project
 
 Steps to use the application:
 
-In two differentes nodes (typically inside visual studio code) run the following commands lines
+In two differentes nodes (typically inside Visual Studio Code) run the following commands lines
+
+- For angular client http://localhost:4200
 
 ```js
-ng serve                                // For angular client http://localhost:4200
+ng serve                                
 ```
+
+- For starting Node.js in local http://localhost:3000
+
 ```js
-npm run start:server                    // For starting Node.js in local http://localhost:3000
+npm run start:server                    
 ```
-In two differentes cmds (typically in Windows, typing 'cmd' on search box) for running database in MongoDB.
+
+In two differentes CMDs (typically in Windows, typing 'cmd' on search box) for running database in MongoDB.
+
+- Previously added two folders inside, for instance, in backend directory
+
 ```js
-mongod --dbpath path\to\data\db         // Previously added two folders inside, for instance, in backend directory
+mongod --dbpath path\to\data\db         
 ```
+
+- For openning the console line
+
 ```js
-mongo localhost:27017                   // For openning the console line
+mongo localhost:27017                   
 ```
+
+Finally, you will need update 'YOUR-Api-Key' in src/app/food/calorie-ninja/calorie-ninja.service.ts
+
+```js
+headers: { 'X-Api-Key': 'YOUR-Api-Key'}
+```
+<p align="center"> Just tested on W10 </p>
+
 ## + Info
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
